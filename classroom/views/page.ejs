@@ -1,0 +1,24 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+
+        <!-- here msg is printed only one time. when we reload page or again send req it will only show name not msg
+        Because flash messages are temporary and showed only once -->
+
+        <h1> <%= msg %></h1>
+        <h1><%= name %></h1>
+
+        <!-- messages is showed every time when we send req like name 
+        this is because we are saving flash messages using 'req.locals' -->
+        <h1><%= messages %></h1>
+        <script src="" async defer></script>
+    </body>
+</html>

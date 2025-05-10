@@ -558,3 +558,84 @@ plt.ylabel("Age")
 plt.legend(title="Survived (1=Yes, 0=No)")
 plt.show()
 
+# Observations :
+Observations and Inferences from the Box Plot:
+
+
+1. Gender-Based Age Distribution:
+
+
+The box plot reveals that there may be differences in the age distribution between males and females.
+
+
+Females: The median age for females might be lower than for males, and there may be fewer outliers in terms of extreme ages.
+
+
+Males: The age distribution for males could be wider, with a higher range of ages, as there may have been more adult males on the ship compared to females.
+
+2. 
+Survival Status and Age Distribution:
+
+
+When the survival status (whether the individual survived or not) is factored in, we can observe potential patterns in the age distribution:
+
+
+Survivors (hue = 1): The age distribution for survivors may show a tendency for certain age groups to have a higher survival rate. For example, you might see that children and young adults (both male and female) have a higher likelihood of surviving, as this was a well-documented aspect of the Titanic disaster (women and children were given priority in lifeboats).
+
+
+Non-Survivors (hue = 0): Non-survivors could show a different age distribution, with more adults and possibly a higher median age, indicating that older individuals had a lower chance of survival.
+
+
+3. Outliers:
+
+
+The presence of outliers may indicate individuals who were much younger or older than most passengers. For instance, there might be a few older individuals (perhaps elderly passengers) or very young children who stand out in the data.
+
+
+4. Overall Inference:
+
+
+From the box plot, we can infer that age played a significant role in survival rates. Younger passengers (especially children) and females had a higher chance of surviving the Titanic disaster, which is reflected in the distinct median values and spread for survivors compared to non-survivors.
+
+
+
+
+
+
+PRACTICAL NO:13
+# Import necessary libraries
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.stats import zscore
+
+df = pd.read_csv('Iris (1).csv')
+
+# List features and their types
+print("Feature Types:\n", df.dtypes)
+
+# Create histograms for each feature
+df.iloc[:, :-1].hist(figsize=(10, 8), bins=15)
+plt.suptitle('Feature Distributions - Histograms')
+plt.show()
+
+# Create boxplots for each feature
+plt.figure(figsize=(12, 8))
+for i, col in enumerate(df.columns[:-2]):
+    plt.subplot(2, 2, i+1)
+    sns.boxplot(x='Species', y=col, data=df)
+    plt.title(f'Boxplot of {col}')
+plt.tight_layout()
+plt.show()
+
+
+
+# Outlier detection using Z-score
+z = zscore(df.iloc[:, :-1])
+outliers = (z > 3) | (z < -3)
+print("\nOutliers per feature (Z-score > 3):\n", outliers.sum())
+
+# Summary statistics
+print("\nSummary Statistics:\n", df.describe())
+
+
